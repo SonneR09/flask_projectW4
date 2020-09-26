@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block wrapper %}
+  <main class="container mt-3">
+    <div class="card my-4 mx-auto">
+      <div class="card-body m-2 m-md-4">
+        <article class="row">
+          <div class="col-5"><img src="{{ teachers[id].picture }}" class="img-fluid" alt=" Нет картинки :С"></div>
+          <div class="col-7">
+
+            <section class="teacher=info">
+
+              <h1 class="h2">{{ teachers[id].name }}</h1>
+              <p>{%for goal in teachers[id].goals %}<span class="badge badge-primary mr-2">{{ goals[goal] }}</span>{%endfor%}</p>
+              <p>Рейтинг: {{ teachers[id].rating }} Ставка: {{ teachers[id].price }} / час</p>
+              <p>{{ teachers[id].about }}</p>
+
+            </section>
+
+            <section class="available">
+
+              <h4 class="mb-4 mt-5">Записаться на пробный урок</h4>
+                {% set weeks = {"mon" : "Понедельник", "tue" : "Вторник", "wed" : "Среда", "thu" : "Четверг",
+              "fri" : "Пятница", "sat" : "Суббота", "sun" : "Воскресение"} %}
+                {% for day in teachers[id].free %}
+              <h6 class="mt-4">{{weeks[day]}}</h6>
+              {%if teachers[id].free[day]["10:00"] == False and
+              teachers[id].free[day]["12:00"] == False and
+              teachers[id].free[day]["14:00"] == False and
+              teachers[id].free[day]["16:00"] == False and
+              teachers[id].free[day]["18:00"] == False and
+              teachers[id].free[day]["20:00"] == False and
+              teachers[id].free[day]["22:00"] == False %}
+              <p>Нет свободных уроков</p>
+              {% else %}
+                  {% for time in teachers[id].free[day] %}
+                    {% if teachers[id].free[day][time] %}
+              <a href="/booking/{{id}}/{{day}}/{{time}}"
+                 class="btn btn-outline-success mr-2">{{time}} свободно</a>
+                      {% endif %}
+                {% endfor %}
+              {% endif %}
+              {% endfor %}
+
+            </section>
+
+          </div>
+        </article>
+      </div>
+    </div>
+  </main>
+{% endblock %}
