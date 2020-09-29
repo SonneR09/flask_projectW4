@@ -5,7 +5,7 @@
     <h2 class="h2 text-center mt-5 mb-5">Список преподавателей</h2>
     <div class="row">
       <div class="col-12 col-lg-10 offset-lg-1 m-auto">
-        {% for teacher in teachers|sort(attribute='rating', reverse=True) %}
+        {% for teacher in teachers_data %}
         <div class="card mb-4">
           <div class="card-body">
             <div class="row">

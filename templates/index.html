@@ -16,16 +16,16 @@
     <h2 class="h5 text-center mb-5">Наши преподаватели</h2>
     <div class="row">
       <div class="col-12 col-lg-10 offset-lg-1 m-auto">
-        {% for id in ids %}
+        {% for teacher in teachers %}
         <div class="card mb-4">
           <div class="card-body">
             <div class="row">
-              <div class="col-3"><img src="{{ teachers[id].picture }}" class="img-fluid" alt="Нет картинки :С"></div>
+              <div class="col-3"><img src="{{ teacher.picture }}" class="img-fluid" alt="Нет картинки :С"></div>
               <div class="col-9">
-                <p class="float-right">Рейтинг: {{ teachers[id].rating }} Ставка: {{ teachers[id].price }} / час</p>
-                <h2 class="h4"> {{ teachers[id].name }}</h2>
-                <p>{{ teachers[id].about|truncate(200)}}</p>
-                <a href="/profiles/{{ id }}" class="btn btn-outline-primary btn-sm mr-3 mb-2">Показать информаци и расписание</a>
+                <p class="float-right">Рейтинг: {{ teacher.rating }} Ставка: {{ teacher.price }} / час</p>
+                <h2 class="h4"> {{ teacher.name }}</h2>
+                <p>{{ teacher.about|truncate(200)}}</p>
+                <a href="/profiles/{{ teacher.id }}" class="btn btn-outline-primary btn-sm mr-3 mb-2">Показать информаци и расписание</a>
               </div>
             </div>
           </div>
